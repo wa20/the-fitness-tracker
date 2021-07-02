@@ -1,14 +1,19 @@
 const router = require('express').Router();
-const Workout = require('../models/workout')
-const { Model } = require('mongoose');
+const Workout = require('../models/workout');
+const { Model } = require("mongoose");
+
+router.post('/api/workout', ({}, res) => {
+  Workout.create({})
+  .then((createdWorkout) => {
+    res.json(createdWorkout);
+  })
+  .catch(err => {
+      res.status(400).json(err)
+  })
+});
 
 
 
-router.post('/api/workout', ({Model}, res) => {
-    Workout.create({}).then((createdWorkout) => {
-        response.json(createdWorkout)
-    })
-})
 
 
 module.exports = router;
