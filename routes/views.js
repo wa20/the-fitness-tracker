@@ -12,4 +12,4 @@ router.get('/exercise', (req, res) =>{
 //stats
 
 
-
+module.exports = router;
