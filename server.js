@@ -9,13 +9,15 @@ const app = express();
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json())
 
-mongoose.connect('mongodb://localhost/workout', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true
 });
 
-//app.use routes
+//routes
+app.use(require('./routes/api'))
+app.use(require('./routes/views'))
 
 
 app.listen(PORT, () => {
