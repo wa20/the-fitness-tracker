@@ -17,7 +17,7 @@ body {
 }
 
 nav {
-  background-color: #5793fd;
+  background-color: #640202;
   color: #ffffff;
   padding: 24px;
   line-height: 3;
@@ -40,8 +40,9 @@ nav a {
 }
 
 nav a:hover {
+  border-radius: 5px;
   background-color: #ffffff;
-  color: #5793fd;
+  color: #000000;
 }
 
 header {
@@ -102,8 +103,16 @@ input {
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
+
+.FTHeader{
+color: white;
+}
+
 .wrapper {
-  background-color: #f2f8ff;
+  
+  background-image: url("/background/workout1.png");
+  /* background-position: center; */
+  background-size: 50%;
   padding-bottom: 100px;
 }
 
