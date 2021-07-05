@@ -38,7 +38,7 @@ router.get('/api/workouts/range', (req, res) =>{
                 $sum: '$exercises.duration'
             }
         }
-    }]).sort({id: -1})
+    }]).sort({day: -1})
     .limit(10)
     .then((createdWorkout) => {
         res.json(createdWorkout)
@@ -50,16 +50,19 @@ router.get('/api/workouts/range', (req, res) =>{
 
 
 //update workouts
-router.put('/api/workouts/:id', (req,res) => {
-Workout.findByIdAndUpdate(req.params.id, {$push: {exercises: req.body}},
+router.put("/api/workouts/:id", (req, res) => {
+  Workout.findOneAndUpdate(
+    {_id: req.params},
+    { $push: { exercises: req.body } },
     //Parameter added so updated data is returned instead of original
-    {new: true},
-).then((createdWorkout) => {
-res.json(createdWorkout)
-})
-.catch( err => {
-    res.status(400).json(err);
-})
+    { new: true }
+  )
+    .then((createdWorkout) => {
+      res.json(createdWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 });
 
 
