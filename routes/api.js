@@ -49,21 +49,25 @@ router.get('/api/workouts/range', (req, res) =>{
 });
 
 
-//update workouts
-router.put("/api/workouts/:id", (req, res) => {
-  Workout.findOneAndUpdate(
-    {_id: req.params},
-    { $push: { exercises: req.body } },
+// update workouts
+router.put("/api/workouts/:id", ({body, params}, res) => {
+//   console.log('++++++++++++++++++',body);
+  Workout.findByIdAndUpdate(
+    params.id,
+    { $push: { exercises: body } },
     //Parameter added so updated data is returned instead of original
-    { new: true }
+    // { new: true }
+    { new: true, runValidators: true }
   )
     .then((createdWorkout) => {
       res.json(createdWorkout);
     })
     .catch((err) => {
+      console.log(err);
       res.status(400).json(err);
     });
 });
+
 
 
 
