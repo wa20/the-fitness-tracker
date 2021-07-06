@@ -22,6 +22,9 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
     useFindAndModify: false
 });
 
+mongoose.connection.on('connected', () => {
+    console.log('Mongoose Connected')
+})
 //routes
 
 
